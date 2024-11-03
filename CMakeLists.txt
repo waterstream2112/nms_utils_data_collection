@@ -13,17 +13,60 @@ find_package(std_msgs REQUIRED)
 find_package(sensor_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
 find_package(geometry_msgs REQUIRED)
+find_package(tf2_sensor_msgs REQUIRED)
+find_package(tf2_geometry_msgs REQUIRED)
+find_package(tf2_eigen REQUIRED)
+find_package(pcl_conversions REQUIRED PATHs /opt/ros/humble)
+find_package(PCL REQUIRED)
+find_package(tf2 REQUIRED)
+find_package(tf2_ros REQUIRED)
 
-if(BUILD_TESTING)
-  find_package(ament_lint_auto REQUIRED)
-  # the following line skips the linter which checks for copyrights
-  # comment the line when a copyright and license is added to all source files
-  set(ament_cmake_copyright_FOUND TRUE)
-  # the following line skips cpplint (only works in a git repo)
-  # comment the line when this package is in a git repo and when
-  # a copyright and license is added to all source files
-  set(ament_cmake_cpplint_FOUND TRUE)
-  ament_lint_auto_find_test_dependencies()
-endif()
+### include
+include_directories(
+  include
+  ${PCL_INCLUDE_DIRS}
+)
+
+
+### Define common source
+# set(common_source
+#   src/common_definitions.cpp)
+
+
+### Executables: node_go2_transform_pointcloud
+add_executable(node_lidar_imu_time_offset
+  src/node_lidar_imu_time_offset.cpp
+  )
+ament_target_dependencies(node_lidar_imu_time_offset
+  rclcpp 
+  std_msgs 
+  sensor_msgs 
+  geometry_msgs
+  PCL
+  pcl_conversions
+  tf2
+  tf2_ros
+  tf2_sensor_msgs
+  tf2_geometry_msgs
+  )
+target_link_libraries(node_lidar_imu_time_offset 
+	${PCL_LIBRARIES}
+	)
+install(TARGETS
+	node_lidar_imu_time_offset
+	DESTINATION lib/${PROJECT_NAME}
+  )
+
+
+### Install
+# install(PROGRAMS 
+#   src/go2_setup_frames.py 
+#   DESTINATION lib/${PROJECT_NAME})
+
+install(DIRECTORY include/${PROJECT_NAME}/ DESTINATION include/${PROJECT_NAME}/)
+install(DIRECTORY config launch DESTINATION share/${PROJECT_NAME}/)
+
+### Find Python modules in the 'src' folder
+ament_python_install_package(src)
 
 ament_package()

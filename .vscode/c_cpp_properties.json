@@ -1,0 +1,29 @@
+{
+    "configurations": [
+        {
+            "name": "Linux-x64",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "${HOME}/ros2_ws/install/**",
+                "/opt/ros/humble/include/**",
+                "/usr/include/pcl-1.12/**",
+                "/usr/include/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14"
+        },
+        {
+            "name": "Linux-arm64",
+            "includePath": [
+                "${workspaceFolder}/**"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14"
+        }
+    ],
+    "version": 4
+}
