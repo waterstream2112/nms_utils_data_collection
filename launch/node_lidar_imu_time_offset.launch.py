@@ -14,8 +14,11 @@ from launch_ros.actions import Node
 def generate_launch_description():
     
     # Declare remapping
-    remappings = [("/pointcloud", "/livox/lidar"), 
-                  ("/imu", "/livox/imu")]
+    # remappings = [("/pointcloud", "/livox/lidar"), 
+    #               ("/imu", "/livox/imu")]
+
+    remappings = [("/pointcloud", "/lidar_points"), 
+                  ("/imu", "/topic_imu")]
     
     # Declare node actions
     node_lidar_imu_time_offset = Node(

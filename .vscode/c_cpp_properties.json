@@ -21,15 +21,17 @@
             "name": "Linux-arm64",
             "includePath": [
                 "${workspaceFolder}/**",
-                "${HOME}/ros2_ws/install/**",
+                "${HOME}/nghia/ros2_ws/install/**",
                 "/opt/ros/humble/include/**",
-                "/usr/include/pcl-1.12/**",
+                "/usr/include/pcl-1.10/**",
                 "/usr/include/**"
             ],
             "defines": [],
-            "compilerPath": "/usr/bin/gcc",
+            "intelliSenseMode": "gcc-arm64",
             "cStandard": "c11",
-            "cppStandard": "gnu++14"
+            "cppStandard": "c++14",
+            "configurationProvider": "ms-vscode.cmake-tools",
+            "compilerPath": "/usr/bin/gcc"
         }
     ],
     "version": 4
